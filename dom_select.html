@@ -1,0 +1,144 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Untitled Document</title>
+    <link rel="stylesheet" type="text/css" href="style/css.css" />
+    <script type="text/javascript">
+
+        /*
+         * bind onclick functions
+         * 	@param：
+         * 		idStr id of object
+         * 		fun function to bind
+         */
+        function myClick(idStr, fun) {
+            var btn = document.getElementById(idStr);
+            btn.onclick = fun;
+        }
+
+        window.onload = function () {
+            myClick("btn01", function () {
+                var bj = document.getElementById("akl");
+                alert(bj.innerHTML);
+            });
+
+            myClick("btn02", function () {
+                var lis = document.getElementsByTagName("li");
+                var res = "";
+                for (var i = 0; i < lis.length; i++) {
+                    res += lis[i].innerHTML + ". ";
+                }
+                alert(res);
+            });
+
+            myClick("btn03", function () {
+                var inputs = document.getElementsByName("gender");
+                var res = "";
+                for (var i = 0; i < inputs.length; i++) {
+                    res += inputs[i].value + ". ";
+                }
+                alert(res);
+            });
+
+            myClick("btn04", function () {
+                var city = document.getElementById("city");
+                var lis = city.getElementsByTagName("li");
+                var res = "";
+                for (var i = 0; i < lis.length; i++) {
+                    res += lis[i].innerHTML + ". ";
+                }
+                alert(res);
+            });
+
+            myClick("btn05", function () {
+                var mobile = document.getElementById("mobile");
+                var fir = mobile.firstElementChild;
+                alert(fir.innerHTML);
+            });
+
+            myClick("btn06", function () {
+                var akl = document.getElementById("akl");
+                var pn = akl.parentNode;
+                alert(pn.innerHTML);
+            });
+
+            myClick("btn07", function () {
+                var and = document.getElementById("Huawei");
+                var pe = and.previousElementSibling;
+                alert(pe.innerHTML);
+
+            });
+
+            myClick("btn08", function () {
+                var um = document.getElementById("username");
+                alert(um.value);
+            });
+
+            myClick("btn09", function () {
+                var um = document.getElementById("username");
+                um.value = "John";
+            });
+        }
+    </script>
+</head>
+
+<body>
+    <div id="total">
+        <div class="inner">
+            <p>
+                City
+            </p>
+            <ul id="city">
+                <li id="akl">Auckland</li>
+                <li>Wellington</li>
+                <li>Christchurch</li>
+                <li>Hamilton</li>
+            </ul>
+            <p>
+                Sports
+            </p>
+            <ul id="sports">
+                <li id="fb">Football</li>
+                <li>Rugby</li>
+                <li>Basketball</li>
+                <li>Golf</li>
+            </ul>
+            <p>
+                Mobile Brand
+            </p>
+            <ul id="mobile">
+                <li>Apple</li>
+                <li id="Huawei">Huawei</li>
+                <li>Sumsung</li>
+            </ul>
+        </div>
+
+        <div class="inner">
+            gender:
+            <input class="hello" type="radio" name="gender" value="male" />
+            Male
+            <input class="hello" type="radio" name="gender" value="female" />
+            Female
+            <br>
+            <br>
+            name:
+            <input type="text" name="name" id="username" value="Your Name" />
+        </div>
+    </div>
+    <br>
+    <div id="btnList">
+        <div><button id="btn01">Select #akl Node</button></div>
+        <div><button id="btn02">Select all li Nodes</button></div>
+        <div><button id="btn03">Select all nodes "name=gender:</button></div>
+        <div><button id="btn04">Select all child li nodes of #city</button></div>
+        <div><button id="btn05">return 1st child node of #mobile</button></div>
+        <div><button id="btn06">return parent node of #akl</button></div>
+        <div><button id="btn07">return previous sibling node of #Huawei</button></div>
+        <div><button id="btn08">return the value of #username</button></div>
+        <div><button id="btn09">fill "John" in name</button></div>
+    </div>
+</body>
+
+</html>

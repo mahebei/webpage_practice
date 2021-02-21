@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Check all / none</title>
+    <script type="text/javascript">
+
+        window.onload = function () {
+            var items = document.getElementsByName("items");
+            var checkAllBox = document.getElementById("checkAllBox");
+
+            //1.#checkAllBtn
+            var checkAllBtn = document.getElementById("checkAllBtn");
+            checkAllBtn.onclick = function () {
+                for (var i = 0; i < items.length; i++) {
+                    items[i].checked = true;
+                }
+                checkAllBox.checked = true;
+            };
+
+            //2.#checkNoneBtn
+            var checkNoBtn = document.getElementById("checkNoneBtn");
+            checkNoBtn.onclick = function () {
+                for (var i = 0; i < items.length; i++) {
+                    items[i].checked = false;
+                }
+                checkAllBox.checked = false;
+            };
+
+            //3.#checkRevBtn
+            var checkRevBtn = document.getElementById("checkRevBtn");
+            checkRevBtn.onclick = function () {
+                checkAllBox.checked = true;
+                for (var i = 0; i < items.length; i++) {
+                    items[i].checked = !items[i].checked;
+                    if (!items[i].checked) {
+                        checkAllBox.checked = false;
+                    }
+                }
+            };
+
+            //4.#sendBtn
+            var sendBtn = document.getElementById("sendBtn");
+            sendBtn.onclick = function () {
+                var res = "";
+                for (var i = 0; i < items.length; i++) {
+                    if (items[i].checked) {
+                        res += items[i].value + ". ";
+                    }
+                }
+                alert(res);
+            };
+
+            //5.#checkAllBox
+            checkAllBox.onclick = function () {
+                for (var i = 0; i < items.length; i++) {
+                    items[i].checked = this.checked;
+                }
+
+            };
+
+            //6.items
+            /*
+             * if all boxes are checked, checkAllBox should be checked
+             * if not all boxes are checked, checkAllBox should not be checked
+             */
+            //set onclick for each box
+            for (var i = 0; i < items.length; i++) {
+                items[i].onclick = function () {
+                    checkAllBox.check = true;
+                    for (var j = 0; j < items.length; j++) {
+                        if (!items[j].check) {
+                            checkAllBox.check = false;
+                            break;
+                        }
+                    }
+                };
+            }
+        };
+    </script>
+</head>
+
+<body>
+
+    <form method="post" action="">
+        Select your hobbies<input type="checkbox" id="checkAllBox">All/None
+
+        <br>
+        <input type="checkbox" name="items" value="Football">Football
+        <input type="checkbox" name="items" value="Basketball">Basketball
+        <input type="checkbox" name="items" value="Rugby">Rugby
+        <input type="checkbox" name="items" value="Table_Tennis">Table Tennis
+        <br>
+        <input type="button" id="checkAllBtn" value="Check All">
+        <input type="button" id="checkNoneBtn" value="Check None">
+        <input type="button" id="checkRevBtn" value="Check Reverse">
+        <input type="button" id="sendBtn" value="Submit">
+    </form>
+
+</body>
+
+</html>
