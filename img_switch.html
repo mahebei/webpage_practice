@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #outer {
+            width: 500px;
+            margin: 50px auto;
+            padding: 10px;
+            background-color: greenyellow;
+            text-align: center;
+        }
+    </style>
+
+    <script type="text/javascript">
+
+        window.onload = function () {
+
+            /*
+             * Click to switch imgs
+             */
+            // get two btns
+            var prev = document.getElementById("prev");
+            var next = document.getElementById("next");
+            // get img tag
+            var img = document.getElementsByTagName("img")[0];
+            //array for url of imgs
+            var imgArr = ["img/1.jpg", "img/2.jpg", "img/3.jpg", "img/4.jpg", "img/5.jpg"];
+            // index of curr img
+            var index = 0;
+            var info = document.getElementById("info");
+            // set info
+            info.innerHTML = (index + 1) + " / " + imgArr.length;
+
+            // add onclick listeners
+            prev.onclick = function () {
+                index--;
+                if (index < 0) {
+                    index = imgArr.length - 1;
+                }
+                img.src = imgArr[index];
+                info.innerHTML = (index + 1) + " / " + imgArr.length;
+            };
+
+            next.onclick = function () {
+                index++;
+                if (index > imgArr.length - 1) {
+                    index = 0;
+                }
+                img.src = imgArr[index];
+                info.innerHTML = (index + 1) + " / " + imgArr.length;
+            };
+        };
+    </script>
+</head>
+
+<body>
+    <div id="outer">
+
+        <p id="info"></p>
+
+        <img src="img/1.jpg" alt="img" />
+
+        <button id="prev">Prev</button>
+        <button id="next">Next</button>
+
+    </div>
+</body>
+
+</html>

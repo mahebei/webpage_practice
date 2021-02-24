@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        #box1 {
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            position: absolute;
+        }
+    </style>
+    <script type="text/javascript">
+        window.onload = function () {
+            document.onkeydown = function () {
+                // moving speed
+                var speed = 10;
+                // when holding ctr key, speed up
+                if (event.ctrlKey) speed = 30;
+                // 37 Left, 38 Up, 39 Right, 40 Down
+                switch (event.keyCode) {
+                    case 37:
+                        box1.style.left = box1.offsetLeft - speed + "px";
+                        break;
+                    case 39:
+                        box1.style.left = box1.offsetLeft + speed + "px";
+                        break;
+                    case 38:
+                        box1.style.top = box1.offsetTop - speed + "px";
+                        break;
+                    case 40:
+                        box1.style.top = box1.offsetTop + speed + "px";
+                        break;
+                }
+            };
+        };
+    </script>
+</head>
+
+<body>
+    <h1>Press arrow keys to move the square</h1>
+    <h2>Press ctrl key to accelerate</h2>
+    <div id="box1"></div>
+</body>
+
+</html>

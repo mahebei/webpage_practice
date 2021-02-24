@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        #box1 {
+            width: 100px;
+            height: 100px;
+            background-color: red;
+        }
+    </style>
+    <script type="text/javascript">
+        window.onload = function () {
+            var box1 = document.getElementById("box1");
+
+            /*
+             * firefox does not suppurt onmousewheel 
+             * Use DOMMouseScroll for firefox
+             * 	use addEventListener() to bind
+             */
+            box1.onmousewheel = function () {
+                // event.wheelDelta shows wheel direction
+                // we only care if it grater or smaller than 0
+                // firefox does not support wheelDelta
+                // use event.detail instead
+                if (event.wheelDelta > 0 || event.detail < 0) {
+                    // scroll up, it get shorter
+                    box1.style.height = box1.clientHeight - 10 + "px";
+                } else {
+                    // scroll down, get longer
+                    box1.style.height = box1.clientHeight + 10 + "px";
+                }
+                /*
+                 * when using addEventListener() to bind listener，
+                 * use event.preventDefault(); to cancel default action
+                 */
+                event.preventDefault();
+                /*
+                 * if the window has scroll bar, it will scroll with mouse wheel,
+                 * this action is on by default, cancel it by return false
+                 */
+                return false;
+            };
+            // bind for firefox
+            box1.addEventListener("DOMMouseScroll", box1.onmousewheel, false);
+        };
+    </script>
+</head>
+
+<body style="height: 2000px;">
+    <div id="box1"></div>
+</body>
+
+</html>

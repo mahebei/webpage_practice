@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        #box1 {
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            position: absolute;
+        }
+
+        #box2 {
+            width: 100px;
+            height: 100px;
+            background-color: yellow;
+            position: absolute;
+            left: 200px;
+            top: 200px;
+        }
+    </style>
+    <script type="text/javascript">
+
+        window.onload = function () {
+            /*
+             * drag Box 1
+             *  - process
+             * 		1. when mouse down on Box 1, start to drag (onmousedown)
+             * 		2. when mouse moves, Box 1 moves (onmousemove)
+             * 		3. when nouse up, Box 1 stop moving	(onmouseup)
+             */
+            var box1 = document.getElementById("box1");
+
+            // Process 1
+            box1.onmousedown = function () {
+                var ol = event.clientX - box1.offsetLeft;
+                var ot = event.clientY - box1.offsetTop;
+
+                // Process 2
+                document.onmousemove = function () {
+                    var left = event.clientX - ol;
+                    var top = event.clientY - ot;
+                    box1.style.left = left + "px";
+                    box1.style.top = top + "px";
+                };
+
+                // Process 3
+                document.onmouseup = function () {
+                    // Cancel the onmousemove event
+                    document.onmousemove = null;
+                    // Cancel the onmouseup event
+                    document.onmouseup = null;
+                };
+            };
+        };
+    </script>
+</head>
+
+<body>
+    <h1>Drag the red sqaure</h1>
+    <div id="box1"></div>
+    <div id="box2"></div>
+</body>
+
+</html>

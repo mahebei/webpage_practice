@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        #box1 {
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            position: absolute;
+        }
+    </style>
+    <script type="text/javascript">
+        window.onload = function () {
+            var box1 = document.getElementById("box1");
+            document.onmousemove = function () {
+                var sqTop = document.body.scrollTop || document.documentElement.scrollTop;
+                var sqLeft = document.body.scrollLeft || document.documentElement.scrollLeft;
+
+                // get postion of mouse
+                var left = event.clientX;
+                var top = event.clientY;
+
+                // set position of the square
+                box1.style.left = left + sqLeft + "px";
+                box1.style.top = top + sqTop + "px";
+            };
+        };
+    </script>
+</head>
+
+<body style="height: 1000px;width: 2000px;">
+    <div id="box1"></div>
+</body>
+
+</html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Add del record of table</title>
+    <link rel="stylesheet" type="text/css" href="ex_2_style/css.css" />
+    <script type="text/javascript">
+
+        /*
+         * del info of a stuff
+         */
+        function delA() {
+            // get this tr
+            var tr = this.parentNode.parentNode;
+
+            // show a confirm window
+            var name = tr.children[0].innerHTML;
+            var flag = confirm("Delete " + name + " ?");
+            // if confirmed
+            if (flag) {
+                tr.parentNode.removeChild(tr);
+            }
+            /*
+             * when a del link is clicked, it will jump to a new page by default
+             * 	return false to avoid it
+             */
+            return false;
+        };
+
+        window.onload = function () {
+            // del stuff listener
+            var allA = document.getElementsByTagName("a");
+            for (var i = 0; i < allA.length; i++) {
+                allA[i].onclick = delA;
+            }
+
+            // add new stuff listener
+            var addEmpButton = document.getElementById("addEmpButton");
+            addEmpButton.onclick = function () {
+                // get info of new stuff
+                var name = document.getElementById("empName").value;
+                var email = document.getElementById("email").value;
+                var salary = document.getElementById("salary").value;
+
+                // create and add info to tr
+                var tr = document.createElement("tr");
+                tr.innerHTML = "<td>" + name + "</td>" +
+                    "<td>" + email + "</td>" +
+                    "<td>" + salary + "</td>" +
+                    "<td><a href='javascript:;'>Delete</a></td>";
+
+                // bind a onclick listener to del link of the new stuff
+                var a = tr.getElementsByTagName("a")[0];
+                a.onclick = delA;
+
+                // add new stuff to table
+                var employeeTable = document.getElementById("employeeTable");
+                var tbody = employeeTable.getElementsByTagName("tbody")[0];
+                tbody.appendChild(tr);
+            };
+
+        };
+    </script>
+</head>
+
+<body>
+    <table id="employeeTable">
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Salary</th>
+            <th>&nbsp;</th>
+        </tr>
+        <tr>
+            <td>Tom</td>
+            <td>tom@tom.com</td>
+            <td>5000</td>
+            <td>
+                <a href="javascript:;">Delete</a>
+            </td>
+        </tr>
+        <tr>
+            <td>Jerry</td>
+            <td>jerry@sohu.com</td>
+            <td>8000</td>
+            <td>
+                <a href="deleteEmp?id=002">Delete</a>
+            </td>
+        </tr>
+        <tr>
+            <td>Bob</td>
+            <td>bob@tom.com</td>
+            <td>10000</td>
+            <td>
+                <a href="deleteEmp?id=003">Delete</a>
+            </td>
+        </tr>
+    </table>
+
+    <div id="formDiv">
+        <h4>Add new stuff</h4>
+        <table>
+            <tr>
+                <td class="word">name: </td>
+                <td class="inp">
+                    <input type="text" name="empName" id="empName" />
+                </td>
+            </tr>
+            <tr>
+                <td class="word">email: </td>
+                <td class="inp">
+                    <input type="text" name="email" id="email" />
+                </td>
+            </tr>
+            <tr>
+                <td class="word">salary: </td>
+                <td class="inp">
+                    <input type="text" name="salary" id="salary" />
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" center>
+                    <button id="addEmpButton">
+                        Submit
+                    </button>
+                </td>
+            </tr>
+        </table>
+    </div>
+</body>
+
+</html>

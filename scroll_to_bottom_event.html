@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        #info {
+            width: 300px;
+            height: 500px;
+            overflow: auto;
+        }
+    </style>
+    <script type="text/javascript">
+        window.onload = function () {
+            var info = document.getElementById("info");
+            var register = document.getElementsByTagName("input")[0];
+            info.onscroll = function () {
+                // check if it scrolled to the bottom
+                if (info.scrollHeight - info.scrollTop == info.clientHeight) {
+                    register.disabled = false;
+                }
+            };
+        };
+    </script>
+</head>
+
+<body>
+    <h3>Log on</h3>
+    <p id="info">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia corrupti, sed obcaecati sunt nihil corporis
+        atque id voluptatem ex doloribus non hic culpa dolorum cum quibusdam tempora totam officia. Nostrum!
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia corrupti, sed obcaecati sunt nihil corporis
+        atque id
+        voluptatem ex doloribus non hic culpa dolorum cum quibusdam tempora totam officia. Nostrum!
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia corrupti, sed obcaecati sunt nihil corporis
+        atque id
+        voluptatem ex doloribus non hic culpa dolorum cum quibusdam tempora totam officia. Nostrum!
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia corrupti, sed obcaecati sunt nihil corporis
+        atque id
+        voluptatem ex doloribus non hic culpa dolorum cum quibusdam tempora totam officia. Nostrum!Lorem ipsum dolor sit
+        amet consectetur adipisicing elit. Mollitia corrupti, sed obcaecati sunt nihil corporis
+        atque id voluptatem ex doloribus non hic culpa dolorum cum quibusdam tempora totam officia. Nostrum!
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia corrupti, sed obcaecati sunt nihil corporis
+        atque id
+        voluptatem ex doloribus non hic culpa dolorum cum quibusdam tempora totam officia. Nostrum!
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia corrupti, sed obcaecati sunt nihil corporis
+        atque id
+        voluptatem ex doloribus non hic culpa dolorum cum quibusdam tempora totam officia. Nostrum!
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia corrupti, sed obcaecati sunt nihil corporis
+        atque id
+        voluptatem ex doloribus non hic culpa dolorum cum quibusdam tempora totam officia. Nostrum!Lorem ipsum dolor sit
+        amet consectetur adipisicing elit. Mollitia corrupti, sed obcaecati sunt nihil corporis
+        atque id voluptatem ex doloribus non hic culpa dolorum cum quibusdam tempora totam officia. Nostrum!
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia corrupti, sed obcaecati sunt nihil corporis
+        atque id
+        voluptatem ex doloribus non hic culpa dolorum cum quibusdam tempora totam officia. Nostrum!
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia corrupti, sed obcaecati sunt nihil corporis
+        atque id
+        voluptatem ex doloribus non hic culpa dolorum cum quibusdam tempora totam officia. Nostrum!
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia corrupti, sed obcaecati sunt nihil corporis
+        atque id
+        voluptatem ex doloribus non hic culpa dolorum cum quibusdam tempora totam officia. Nostrum!Lorem ipsum dolor sit
+        amet consectetur adipisicing elit. Mollitia corrupti, sed obcaecati sunt nihil corporis
+        atque id voluptatem ex doloribus non hic culpa dolorum cum quibusdam tempora totam officia. Nostrum!
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia corrupti, sed obcaecati sunt nihil corporis
+        atque id
+        voluptatem ex doloribus non hic culpa dolorum cum quibusdam tempora totam officia. Nostrum!
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia corrupti, sed obcaecati sunt nihil corporis
+        atque id
+        voluptatem ex doloribus non hic culpa dolorum cum quibusdam tempora totam officia. Nostrum!
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia corrupti, sed obcaecati sunt nihil corporis
+        atque id
+        voluptatem ex doloribus non hic culpa dolorum cum quibusdam tempora totam officia. Nostrum!
+    </p>
+    <input type="submit" value="Log on" disabled="disabled" />
+</body>
+
+</html>

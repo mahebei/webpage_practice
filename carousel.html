@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Carousel</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #outer {
+            width: 520px;
+            height: 333px;
+            margin: 50px auto;
+            background-color: greenyellow;
+            padding: 10px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #imgList {
+            list-style: none;
+            position: absolute;
+            left: 0px;
+        }
+
+        #imgList li {
+            float: left;
+            margin: 0 10px;
+        }
+
+        #navDiv {
+            position: absolute;
+            bottom: 15px;
+        }
+
+        #navDiv a {
+            float: left;
+            width: 15px;
+            height: 15px;
+            background-color: red;
+            margin: 0 5px;
+            opacity: 0.5;
+        }
+
+        #navDiv a:hover {
+            background-color: black;
+        }
+    </style>
+    <script type="text/javascript">
+        window.onload = function () {
+            // set chosen link
+            function setA() {
+                // the last img is indentical to the ist img, set to 1st img
+                if (index >= imgArr.length - 1) {
+                    index = 0;
+                    imgList.style.left = 0;
+                }
+                // set all to red and chosen one black
+                for (var i = 0; i < allA.length; i++) {
+                    allA[i].style.backgroundColor = "";
+                }
+                allA[index].style.backgroundColor = "black";
+            };
+
+            var timer;
+            // auto switch imgs
+            function autoSwitch() {
+                timer = setInterval(function () {
+                    index++;
+                    index %= imgArr.length;
+                    move(imgList, "left", -520 * index, 50, function () {
+                        setA();
+                    });
+                }, 3000);
+            }
+
+            var imgList = document.getElementById("imgList");
+            var imgArr = document.getElementsByTagName("img");
+            imgList.style.width = 520 * imgArr.length + "px";
+            var navDiv = document.getElementById("navDiv");
+            var outer = document.getElementById("outer");
+            navDiv.style.left = (outer.offsetWidth - navDiv.offsetWidth) / 2 + "px";
+            var index = 0;
+            var allA = document.getElementsByTagName("a");
+            allA[index].style.backgroundColor = "black";
+
+            // set onclick linstener for each link
+            for (var i = 0; i < allA.length; i++) {
+                // add an index attr for each link
+                allA[i].index = i;
+                // bind listener for each link
+                allA[i].onclick = function () {
+                    clearInterval(timer);
+                    index = this.index;
+                    setA();
+                    move(imgList, "left", -520 * index, 120, function () {
+                        autoSwitch();
+                    });
+                };
+            }
+
+            // start auto switch imgs
+            autoSwitch();
+        };
+
+        /*
+        * @param
+        * obj: the obj
+        * attr: animation style
+        * target: target position of animation
+        * speed: speed of moving, +: right -: left
+        * callback: callback function
+        */
+        function move(obj, attr, target, speed, callback) {
+            // clear last timer
+            clearInterval(obj.timer);
+            // get curr position
+            var current = parseInt(getComputedStyle(obj, null)[attr]);
+            if (current > target) {
+                // speed < 0
+                speed = -speed;
+            }
+            // a timer for the animation of moving
+            obj.timer = setInterval(function () {
+                // get old position
+                var oldValue = parseInt(getComputedStyle(obj, null)["left"]);
+                // calculate next position
+                var newValue = oldValue + speed;
+                // check if pass the target
+                if ((speed < 0 && newValue < target) || (speed > 0 && newValue > target)) {
+                    newValue = target;
+                }
+                // set new position to box1
+                obj.style.left = newValue + "px";
+                if (newValue == target) {
+                    clearInterval(obj.timer);
+                    callback && callback();
+                }
+            }, 30);
+        }
+    </script>
+</head>
+
+<body>
+    <!-- outer container -->
+    <div id="outer">
+        <!-- ul for imgs -->
+        <ul id="imgList">
+            <li><img src="img/1.jpg" /></li>
+            <li><img src="img/2.jpg" /></li>
+            <li><img src="img/3.jpg" /></li>
+            <li><img src="img/4.jpg" /></li>
+            <li><img src="img/5.jpg" /></li>
+            <li><img src="img/1.jpg" /></li>
+        </ul>
+        <!--Navi button-->
+        <div id="navDiv">
+            <a href="javascript:;"></a>
+            <a href="javascript:;"></a>
+            <a href="javascript:;"></a>
+            <a href="javascript:;"></a>
+            <a href="javascript:;"></a>
+        </div>
+    </div>
+</body>
+
+</html>

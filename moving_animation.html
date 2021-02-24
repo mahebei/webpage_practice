@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #box1 {
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            position: absolute;
+            left: 0;
+        }
+    </style>
+    <script type="text/javascript">
+        window.onload = function () {
+            var box1 = document.getElementById("box1");
+            var right = document.getElementById("right");
+            var left = document.getElementById("left");
+            // go right
+            right.onclick = function () {
+                move(box1, 800, 10);
+            };
+            // go left
+            left.onclick = function () {
+                move(box1, 0, 10);
+            };
+        };
+        var timer;
+        /*
+         * @param：
+         * 	obj: the box to move
+         * 	target: target to move to
+         * 	speed: speed of moving, +: right -: left
+         */
+        function move(obj, target, speed) {
+            // clear last timer
+            clearInterval(timer);
+            // get curr position
+            var current = parseInt(getComputedStyle(obj, null)["left"]);
+            // if moving from 0 to 800, speed > 0
+            // if moving from 800 to 0, speed < 0			
+            if (current > target) {
+                // speed < 0
+                speed = -speed;
+            }
+            // a timer for the animation of moving
+            timer = setInterval(function () {
+                // get old position
+                var oldValue = parseInt(getComputedStyle(obj, null)["left"]);
+                // calculate next position
+                var newValue = oldValue + speed;
+                // check if pass the target
+                if ((speed < 0 && newValue < target) || (speed > 0 && newValue > target)) {
+                    newValue = target;
+                }
+                // set new position to box1
+                obj.style.left = newValue + "px";
+                if (newValue == target) clearInterval(timer);
+            }, 30);
+        }
+    </script>
+</head>
+
+<body>
+    <button id="right">Click me to move right</button>
+    <button id="left">Click me to move left</button>
+    <br /><br />
+    <div id="box1"></div>
+    <div style="width: 0; height: 1000px; border-left:1px black solid; position: absolute; left: 800px;top:0;"></div>
+</body>
+
+</html>
