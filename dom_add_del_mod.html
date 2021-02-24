@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM</title>
+    <script type="text/javascript">
+        window.onload = function () {
+            // Create a Dunedin node, add it to #city
+            myClick("btn01", function () {
+                var li = document.createElement("li");
+                var text = document.createTextNode("Dunedin");
+                li.appendChild(text);
+                var city = document.getElementById("city");
+                city.appendChild(li);
+                // or 
+
+                /*
+                    var li = document.createElement("li");
+                    li.innerHTML = "Dunedin";
+                    city.appendChild(li);
+                */
+            });
+
+            // Insert Dunedin node before #akl
+            myClick("btn02", function () {
+                var li = document.createElement("li");
+                var text = document.createTextNode("Dunedin");
+                li.appendChild(text);
+
+                // parentNode.insertBefore(newNode, oldNode);
+                // oldNode:
+                var akl = document.getElementById("akl");
+                // parentNode:
+                var city = document.getElementById("city");
+                city.insertBefore(li, akl);
+            });
+
+
+            // Replace #akl with Dunedin
+            myClick("btn03", function () {
+                var li = document.createElement("li");
+                var text = document.createTextNode("Dunedin");
+                li.appendChild(text);
+
+                // parentNode.replaceChild(newNode, oldNode);
+                // oldNode:
+                var akl = document.getElementById("akl");
+                // parentNode:
+                var city = document.getElementById("city");
+                city.replaceChild(li, akl);
+            });
+
+            // del #akl
+            myClick("btn04", function () {
+                var akl = document.getElementById("akl");
+                /*
+                 * use removeChild() to remove itself:
+                 * node.parentNode.removeChild(childNode);
+                 */
+                akl.parentNode.removeChild(akl);
+            });
+
+            // Get HTML of #city
+            myClick("btn05", function () {
+                var city = document.getElementById("city");
+                alert(city.innerHTML);
+            });
+
+            // Change value of #akl
+            myClick("btn06", function () {
+                var akl = document.getElementById("akl");
+                akl.innerHTML = "Manukau";
+            });
+        };
+
+        // function to add onclick listeners
+        function myClick(idStr, fun) {
+            var btn = document.getElementById(idStr);
+            btn.onclick = fun;
+        }
+    </script>
+
+</head>
+
+<body>
+    <div class="inner">
+        <ul id="city">
+            <li id="akl">Auckland</li>
+            <li>Wellington</li>
+            <li>Christchurch</li>
+            <li>Hamilton</li>
+        </ul>
+    </div>
+    <div id="btnList">
+        <div><button id="btn01">Create a Dunedin node, add it to #city</button></div>
+        <div><button id="btn02">Insert Dunedin node before #akl</button></div>
+        <div><button id="btn03">Replace #akl with Dunedin</button></div>
+        <div><button id="btn04">Del #akl node</button></div>
+        <div><button id="btn05">get HTML of #city</button></div>
+        <div><button id="btn06">Change value of #akl</button></div>
+    </div>
+</body>
+
+</html>
