@@ -70,10 +70,10 @@
             //set onclick for each box
             for (var i = 0; i < items.length; i++) {
                 items[i].onclick = function () {
-                    checkAllBox.check = true;
+                    checkAllBox.checked = true;
                     for (var j = 0; j < items.length; j++) {
-                        if (!items[j].check) {
-                            checkAllBox.check = false;
+                        if (!items[j].checked) {
+                            checkAllBox.checked = false;
                             break;
                         }
                     }
